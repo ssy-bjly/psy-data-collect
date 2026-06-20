@@ -52,5 +52,113 @@
       "productChoices": {},
       "donationAmount": 0
     }
+  },
+  {
+    "id": "ab6e6373-64f4-40b5-af75-82e82d246597",
+    "participantCode": "D002",
+    "serverCode": "002",
+    "submittedAt": "2026-06-20T08:25:54.860Z",
+    "debug": true,
+    "groupNumber": 1,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.124.2 Chrome/148.0.7778.97 Electron/42.2.0 Safari/537.36",
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "durationMs": 1438356,
+    "data": {
+      "demographics": {},
+      "futureTrait": {
+        "futureTrait_1": null,
+        "futureTrait_2": null,
+        "futureTrait_3": null,
+        "futureTrait_4": null,
+        "futureTrait_5": null,
+        "futureTrait_6": null,
+        "futureTrait_7": null
+      },
+      "resourceManipulation": null,
+      "controlPre": {
+        "controlPre_1": null,
+        "controlPre_2": null,
+        "controlPre_3": null,
+        "controlPre_4": null,
+        "controlPre_5": null,
+        "controlPre_6": null,
+        "controlPre_7": null,
+        "controlPre_8": null,
+        "controlPre_9": null
+      },
+      "instructionRestatement": "",
+      "timeManipulation": null,
+      "controlPost": {
+        "controlPost_1": null,
+        "controlPost_2": null,
+        "controlPost_3": null,
+        "controlPost_4": null,
+        "controlPost_5": null,
+        "controlPost_6": null,
+        "controlPost_7": null,
+        "controlPost_8": null,
+        "controlPost_9": null
+      },
+      "productChoices": {},
+      "donationAmount": 0
+    }
+  },
+  {
+    "id": "3ba62b2c-d06a-4865-b91f-8242eaefbf30",
+    "participantCode": "D003",
+    "serverCode": "003",
+    "submittedAt": "2026-06-20T09:02:58.116Z",
+    "debug": true,
+    "groupNumber": 4,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.124.2 Chrome/148.0.7778.97 Electron/42.2.0 Safari/537.36",
+    "condition": {
+      "resource": "scarcity",
+      "time": "future"
+    },
+    "durationMs": 24675,
+    "data": {
+      "demographics": {},
+      "futureTrait": {
+        "futureTrait_1": null,
+        "futureTrait_2": null,
+        "futureTrait_3": null,
+        "futureTrait_4": null,
+        "futureTrait_5": null,
+        "futureTrait_6": null,
+        "futureTrait_7": null
+      },
+      "resourceManipulation": null,
+      "controlPre": {
+        "controlPre_1": null,
+        "controlPre_2": null,
+        "controlPre_3": null,
+        "controlPre_4": null,
+        "controlPre_5": null,
+        "controlPre_6": null,
+        "controlPre_7": null,
+        "controlPre_8": null,
+        "controlPre_9": null
+      },
+      "instructionRestatement": "",
+      "timeManipulation": null,
+      "controlPost": {
+        "controlPost_1": null,
+        "controlPost_2": null,
+        "controlPost_3": null,
+        "controlPost_4": null,
+        "controlPost_5": null,
+        "controlPost_6": null,
+        "controlPost_7": null,
+        "controlPost_8": null,
+        "controlPost_9": null
+      },
+      "productChoices": {},
+      "donationAmount": 0
+    }
   }
 ]

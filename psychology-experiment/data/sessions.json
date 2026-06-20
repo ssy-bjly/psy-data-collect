@@ -20,5 +20,16 @@
     },
     "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
     "createdAt": "2026-06-20T07:35:38.419Z"
+  },
+  {
+    "id": "bd2580c7-89fe-4ee9-9858-c7762a3bf782",
+    "participantCode": "003",
+    "groupNumber": 3,
+    "condition": {
+      "resource": "scarcity",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T08:01:41.250Z"
   }
 ]

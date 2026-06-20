@@ -1,0 +1,12 @@
+{
+  "name": "psy-data-collect-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root helper package.json that starts the psychology-experiment server",
+  "scripts": {
+    "start": "node psychology-experiment/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
