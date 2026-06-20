@@ -1,0 +1,68 @@
+[
+  {
+    "id": "25f48e3d-826a-4b85-b064-e2eb265114c2",
+    "participantCode": "001",
+    "groupNumber": 1,
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-05-20T18:39:32.325Z"
+  },
+  {
+    "id": "12f84093-c09f-484c-9ca1-2e86fcebe4eb",
+    "participantCode": "002",
+    "groupNumber": 2,
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-05-20T18:43:54.622Z"
+  },
+  {
+    "id": "1eacdb8d-8d1f-4f9a-89f6-a83bb365823b",
+    "participantCode": "003",
+    "groupNumber": 3,
+    "condition": {
+      "resource": "scarcity",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-05-20T19:00:55.458Z"
+  },
+  {
+    "id": "1c3294e7-2a43-4091-941c-faf545ebb3de",
+    "participantCode": "004",
+    "groupNumber": 4,
+    "condition": {
+      "resource": "scarcity",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-05-21T01:03:09.814Z"
+  },
+  {
+    "id": "68632e35-d0e1-47b3-95a8-5aeb1ff6d3e5",
+    "participantCode": "005",
+    "groupNumber": 1,
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-05-21T02:46:28.614Z"
+  },
+  {
+    "id": "26696e4e-6fa5-4afe-8c18-9e393c467e70",
+    "participantCode": "006",
+    "groupNumber": 2,
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T07:14:24.041Z"
+  }
+]

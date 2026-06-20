@@ -1,0 +1,24 @@
+[
+  {
+    "id": "a23f8486-7766-4709-984e-a234c02dd1b9",
+    "participantCode": "001",
+    "groupNumber": 1,
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T07:21:51.390Z"
+  },
+  {
+    "id": "532269ce-efa1-4a39-b4a7-717279c98a85",
+    "participantCode": "002",
+    "groupNumber": 2,
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T07:35:38.419Z"
+  }
+]

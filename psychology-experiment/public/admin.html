@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>实验后台</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="admin-panel">
+        <h1>实验后台</h1>
+        <p id="adminStatus">正在读取数据...</p>
+        <div class="admin-actions">
+          <button id="downloadBtn" type="button">导出 Excel 可打开数据</button>
+          <button id="refreshBtn" type="button" class="secondary">刷新</button>
+        </div>
+        <p class="muted">默认后台令牌为 <code>admin123</code>。正式部署前请用环境变量 <code>ADMIN_TOKEN</code> 修改。</p>
+      </section>
+    </main>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const token = params.get('token') || '';
+      const statusEl = document.getElementById('adminStatus');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const refreshBtn = document.getElementById('refreshBtn');
+
+      async function loadStatus() {
+        const res = await fetch(`/api/admin?token=${encodeURIComponent(token)}`);
+        const data = await res.json();
+        if (!res.ok) {
+          statusEl.textContent = data.error || '后台访问失败';
+          downloadBtn.disabled = true;
+          return;
+        }
+        statusEl.textContent = `当前有效提交：${data.count} 条。最近提交时间：${data.latestSubmittedAt || '暂无'}`;
+        downloadBtn.disabled = false;
+      }
+
+      downloadBtn.addEventListener('click', () => {
+        location.href = `/api/export?token=${encodeURIComponent(token)}`;
+      });
+      refreshBtn.addEventListener('click', loadStatus);
+      loadStatus();
+    </script>
+  </body>
+</html>

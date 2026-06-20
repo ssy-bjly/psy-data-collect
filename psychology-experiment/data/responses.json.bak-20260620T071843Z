@@ -1,0 +1,376 @@
+[
+  {
+    "id": "afa704dd-132b-480c-943c-2ef5bd217f46",
+    "participantCode": "001",
+    "serverCode": "001",
+    "submittedAt": "2026-05-20T18:42:09.066Z",
+    "debug": false,
+    "groupNumber": 1,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "durationMs": 156755,
+    "durationSeconds": 157,
+    "data": {
+      "demographics": {
+        "gender": "其他 / 不愿透露",
+        "age": "25-30 岁",
+        "education": "本科",
+        "occupation": "事业单位 / 公务员",
+        "income": "5001-10000 元",
+        "region": "地级市 / 县级市"
+      },
+      "futureTrait": {
+        "futureTrait_1": 4,
+        "futureTrait_2": 3,
+        "futureTrait_3": 3,
+        "futureTrait_4": 5,
+        "futureTrait_5": 5,
+        "futureTrait_6": 3,
+        "futureTrait_7": 5
+      },
+      "resourceManipulation": 6,
+      "controlPre": {
+        "controlPre_1": 2,
+        "controlPre_2": 4,
+        "controlPre_3": 4,
+        "controlPre_4": 3,
+        "controlPre_5": 4,
+        "controlPre_6": 4,
+        "controlPre_7": 4,
+        "controlPre_8": 4,
+        "controlPre_9": 4
+      },
+      "instructionRestatement": "静安寺不错",
+      "timeManipulation": 5,
+      "controlPost": {
+        "controlPost_1": 5,
+        "controlPost_2": 3,
+        "controlPost_3": 6,
+        "controlPost_4": 5,
+        "controlPost_5": 5,
+        "controlPost_6": 2,
+        "controlPost_7": 3,
+        "controlPost_8": 3,
+        "controlPost_9": 4
+      },
+      "productChoices": {
+        "food": "green_food",
+        "detergent": "eco_detergent"
+      },
+      "donationAmount": 4
+    },
+    "timings": {
+      "intro": {
+        "totalMs": 2802,
+        "lastEnteredAt": "2026-05-20T18:39:32.296Z",
+        "lastLeftAt": "2026-05-20T18:39:35.098Z"
+      },
+      "baseline": {
+        "totalMs": 18866,
+        "lastEnteredAt": "2026-05-20T18:39:35.098Z",
+        "lastLeftAt": "2026-05-20T18:39:53.964Z"
+      },
+      "resourcePrime": {
+        "totalMs": 17079,
+        "lastEnteredAt": "2026-05-20T18:39:53.964Z",
+        "lastLeftAt": "2026-05-20T18:40:11.043Z"
+      },
+      "resourceCheck": {
+        "totalMs": 2424,
+        "lastEnteredAt": "2026-05-20T18:40:11.043Z",
+        "lastLeftAt": "2026-05-20T18:40:13.467Z"
+      },
+      "controlPre": {
+        "totalMs": 15452,
+        "lastEnteredAt": "2026-05-20T18:40:13.467Z",
+        "lastLeftAt": "2026-05-20T18:40:28.919Z"
+      },
+      "timePrime": {
+        "totalMs": 8750,
+        "lastEnteredAt": "2026-05-20T18:40:28.919Z",
+        "lastLeftAt": "2026-05-20T18:40:37.669Z"
+      },
+      "timeCheck": {
+        "totalMs": 2445,
+        "lastEnteredAt": "2026-05-20T18:40:37.669Z",
+        "lastLeftAt": "2026-05-20T18:40:40.114Z"
+      },
+      "controlPost": {
+        "totalMs": 22546,
+        "lastEnteredAt": "2026-05-20T18:40:40.114Z",
+        "lastLeftAt": "2026-05-20T18:41:02.660Z"
+      },
+      "products": {
+        "totalMs": 28807,
+        "lastEnteredAt": "2026-05-20T18:41:02.660Z",
+        "lastLeftAt": "2026-05-20T18:41:31.467Z"
+      },
+      "donationBrowse": {
+        "totalMs": 29046,
+        "lastEnteredAt": "2026-05-20T18:41:31.467Z",
+        "lastLeftAt": "2026-05-20T18:42:00.513Z"
+      },
+      "donation": {
+        "totalMs": 8538,
+        "lastEnteredAt": "2026-05-20T18:42:00.513Z",
+        "lastLeftAt": "2026-05-20T18:42:09.051Z"
+      }
+    }
+  },
+  {
+    "id": "3d5a880e-c27f-4f91-8375-1275f84e887c",
+    "participantCode": "002",
+    "serverCode": "002",
+    "submittedAt": "2026-05-20T18:45:43.514Z",
+    "debug": false,
+    "groupNumber": 2,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.121.0 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36",
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "durationMs": 108898,
+    "durationSeconds": 109,
+    "data": {
+      "demographics": {
+        "gender": "其他 / 不愿透露",
+        "age": "25-30 岁",
+        "education": "博士研究生及以上",
+        "occupation": "企业 / 公司职员",
+        "income": "2000 元及以下",
+        "region": "乡镇 / 农村"
+      },
+      "futureTrait": {
+        "futureTrait_1": 4,
+        "futureTrait_2": 3,
+        "futureTrait_3": 3,
+        "futureTrait_4": 4,
+        "futureTrait_5": 5,
+        "futureTrait_6": 5,
+        "futureTrait_7": 3
+      },
+      "resourceManipulation": 5,
+      "controlPre": {
+        "controlPre_1": 4,
+        "controlPre_2": 3,
+        "controlPre_3": 3,
+        "controlPre_4": 4,
+        "controlPre_5": 4,
+        "controlPre_6": 3,
+        "controlPre_7": 3,
+        "controlPre_8": 4,
+        "controlPre_9": 3
+      },
+      "instructionRestatement": "VS的v公司DVD是",
+      "timeManipulation": 6,
+      "controlPost": {
+        "controlPost_1": 7,
+        "controlPost_2": 5,
+        "controlPost_3": 3,
+        "controlPost_4": 3,
+        "controlPost_5": 2,
+        "controlPost_6": 3,
+        "controlPost_7": 3,
+        "controlPost_8": 4,
+        "controlPost_9": 5
+      },
+      "productChoices": {
+        "food": "green_food",
+        "detergent": "eco_detergent"
+      },
+      "donationAmount": 2
+    },
+    "timings": {
+      "intro": {
+        "totalMs": 3771,
+        "lastEnteredAt": "2026-05-20T18:43:54.613Z",
+        "lastLeftAt": "2026-05-20T18:43:58.384Z"
+      },
+      "baseline": {
+        "totalMs": 15661,
+        "lastEnteredAt": "2026-05-20T18:43:58.384Z",
+        "lastLeftAt": "2026-05-20T18:44:14.045Z"
+      },
+      "resourcePrime": {
+        "totalMs": 16274,
+        "lastEnteredAt": "2026-05-20T18:44:14.045Z",
+        "lastLeftAt": "2026-05-20T18:44:30.319Z"
+      },
+      "resourceCheck": {
+        "totalMs": 2971,
+        "lastEnteredAt": "2026-05-20T18:44:30.319Z",
+        "lastLeftAt": "2026-05-20T18:44:33.290Z"
+      },
+      "controlPre": {
+        "totalMs": 10125,
+        "lastEnteredAt": "2026-05-20T18:44:33.290Z",
+        "lastLeftAt": "2026-05-20T18:44:43.415Z"
+      },
+      "timePrime": {
+        "totalMs": 4394,
+        "lastEnteredAt": "2026-05-20T18:44:43.415Z",
+        "lastLeftAt": "2026-05-20T18:44:47.809Z"
+      },
+      "timeCheck": {
+        "totalMs": 1575,
+        "lastEnteredAt": "2026-05-20T18:44:47.809Z",
+        "lastLeftAt": "2026-05-20T18:44:49.384Z"
+      },
+      "controlPost": {
+        "totalMs": 12069,
+        "lastEnteredAt": "2026-05-20T18:44:49.384Z",
+        "lastLeftAt": "2026-05-20T18:45:01.453Z"
+      },
+      "products": {
+        "totalMs": 17475,
+        "lastEnteredAt": "2026-05-20T18:45:01.453Z",
+        "lastLeftAt": "2026-05-20T18:45:18.928Z"
+      },
+      "donationBrowse": {
+        "totalMs": 22290,
+        "lastEnteredAt": "2026-05-20T18:45:18.928Z",
+        "lastLeftAt": "2026-05-20T18:45:41.218Z"
+      },
+      "donation": {
+        "totalMs": 2293,
+        "lastEnteredAt": "2026-05-20T18:45:41.218Z",
+        "lastLeftAt": "2026-05-20T18:45:43.511Z"
+      }
+    }
+  },
+  {
+    "id": "f32c7155-ebc4-4d61-b644-fc157ab2e266",
+    "participantCode": "003",
+    "serverCode": "003",
+    "submittedAt": "2026-05-20T19:03:49.877Z",
+    "debug": false,
+    "groupNumber": 3,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.121.0 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36",
+    "condition": {
+      "resource": "scarcity",
+      "time": "neutral"
+    },
+    "durationMs": 170910,
+    "durationSeconds": 171,
+    "data": {
+      "demographics": {
+        "gender": "女",
+        "age": "19-24 岁",
+        "education": "专科",
+        "occupation": "在校学生",
+        "income": "2001-5000 元",
+        "region": "新一线城市 / 省会城市"
+      },
+      "futureTrait": {
+        "futureTrait_1": 4,
+        "futureTrait_2": 3,
+        "futureTrait_3": 4,
+        "futureTrait_4": 4,
+        "futureTrait_5": 4,
+        "futureTrait_6": 2,
+        "futureTrait_7": 5
+      },
+      "resourceManipulation": 4,
+      "controlPre": {
+        "controlPre_1": 6,
+        "controlPre_2": 2,
+        "controlPre_3": 6,
+        "controlPre_4": 3,
+        "controlPre_5": 5,
+        "controlPre_6": 2,
+        "controlPre_7": 2,
+        "controlPre_8": 5,
+        "controlPre_9": 4
+      },
+      "instructionRestatement": "v现场v不行",
+      "timeManipulation": 2,
+      "controlPost": {
+        "controlPost_1": 5,
+        "controlPost_2": 4,
+        "controlPost_3": 3,
+        "controlPost_4": 4,
+        "controlPost_5": 3,
+        "controlPost_6": 5,
+        "controlPost_7": 5,
+        "controlPost_8": 4,
+        "controlPost_9": 2
+      },
+      "productChoices": {
+        "food": "green_food",
+        "detergent": "eco_detergent"
+      },
+      "donationAmount": 3
+    },
+    "timings": {}
+  },
+  {
+    "id": "e907798a-fe21-46e8-bab3-d4d28b0817e3",
+    "participantCode": "005",
+    "serverCode": "004",
+    "submittedAt": "2026-05-21T02:51:05.887Z",
+    "debug": false,
+    "groupNumber": 1,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.121.0 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36",
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "durationMs": 264544,
+    "data": {
+      "demographics": {
+        "gender": "女",
+        "age": "41 岁及以上",
+        "education": "博士研究生及以上",
+        "occupation": "待业 / 其他",
+        "income": "2000 元及以下",
+        "region": "一线城市（北上广深）"
+      },
+      "futureTrait": {
+        "futureTrait_1": 2,
+        "futureTrait_2": 4,
+        "futureTrait_3": 4,
+        "futureTrait_4": 3,
+        "futureTrait_5": 5,
+        "futureTrait_6": 3,
+        "futureTrait_7": 6
+      },
+      "resourceManipulation": 3,
+      "controlPre": {
+        "controlPre_1": 5,
+        "controlPre_2": 3,
+        "controlPre_3": 5,
+        "controlPre_4": 3,
+        "controlPre_5": 6,
+        "controlPre_6": 6,
+        "controlPre_7": 3,
+        "controlPre_8": 5,
+        "controlPre_9": 6
+      },
+      "instructionRestatement": "ewfwfw",
+      "timeManipulation": 5,
+      "controlPost": {
+        "controlPost_1": 4,
+        "controlPost_2": 3,
+        "controlPost_3": 5,
+        "controlPost_4": 2,
+        "controlPost_5": 2,
+        "controlPost_6": 5,
+        "controlPost_7": 3,
+        "controlPost_8": 2,
+        "controlPost_9": 4
+      },
+      "productChoices": {
+        "food": "regular_food",
+        "detergent": "green_detergent"
+      },
+      "donationAmount": 3
+    }
+  }
+]

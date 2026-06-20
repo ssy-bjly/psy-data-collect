@@ -1,0 +1,66 @@
+[
+  {
+    "id": "4d795441-5c73-4650-9251-ac94e7093654",
+    "participantCode": "D001",
+    "serverCode": "001",
+    "submittedAt": "2026-05-21T01:51:26.583Z",
+    "debug": true,
+    "groupNumber": 3,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+    "condition": {
+      "resource": "scarcity",
+      "time": "neutral"
+    },
+    "durationMs": 137210,
+    "data": {
+      "demographics": {
+        "gender": "女",
+        "age": "19-24 岁",
+        "education": "专科",
+        "occupation": "企业 / 公司职员",
+        "income": "2001-5000 元",
+        "region": "新一线城市 / 省会城市"
+      },
+      "futureTrait": {
+        "futureTrait_1": 4,
+        "futureTrait_2": 2,
+        "futureTrait_3": 4,
+        "futureTrait_4": 6,
+        "futureTrait_5": 3,
+        "futureTrait_6": 2,
+        "futureTrait_7": 6
+      },
+      "resourceManipulation": 4,
+      "controlPre": {
+        "controlPre_1": 2,
+        "controlPre_2": 2,
+        "controlPre_3": 5,
+        "controlPre_4": 3,
+        "controlPre_5": 3,
+        "controlPre_6": 6,
+        "controlPre_7": 2,
+        "controlPre_8": 6,
+        "controlPre_9": 7
+      },
+      "instructionRestatement": "感动和规范",
+      "timeManipulation": 3,
+      "controlPost": {
+        "controlPost_1": 6,
+        "controlPost_2": 2,
+        "controlPost_3": 2,
+        "controlPost_4": 7,
+        "controlPost_5": 7,
+        "controlPost_6": 2,
+        "controlPost_7": 2,
+        "controlPost_8": 2,
+        "controlPost_9": 2
+      },
+      "productChoices": {
+        "food": "green_food",
+        "detergent": "green_detergent"
+      },
+      "donationAmount": 3
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "psychology-experiment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Psychology experiment web app with IP-limited submissions and Excel export.",
+  "main": "server.js",
+  "scripts": {"start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

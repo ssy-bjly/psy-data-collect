@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="干旱河床与低水位">
+  <rect width="1200" height="675" fill="#e7d7b7"/>
+  <rect y="0" width="1200" height="240" fill="#d8eef0"/>
+  <circle cx="990" cy="108" r="54" fill="#e2a84b"/>
+  <path d="M0 250c155-45 275-18 435-6 191 15 320-38 505-30 115 5 192 28 260 66v395H0z" fill="#c7a46d"/>
+  <path d="M0 360c140-29 232 8 352 11 174 5 272-61 440-48 152 12 268 45 408 26v326H0z" fill="#b98e57"/>
+  <path d="M70 470l105-60 96 75 112-70 130 72 154-87 144 94 138-78 161 92" fill="none" stroke="#7b5a3a" stroke-width="12" stroke-linecap="round" opacity=".48"/>
+  <path d="M38 585l128-84 126 92 157-102 145 95 169-118 168 116 151-96 94 55" fill="none" stroke="#6d4b2e" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+  <path d="M90 320c75-45 177-43 246 0M722 260c96-38 181-22 251 29" fill="none" stroke="#f8f4e9" stroke-width="16" stroke-linecap="round" opacity=".7"/>
+</svg>
