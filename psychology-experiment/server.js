@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { createClient } = require('@supabase/supabase-js');
 
 const PORT = Number(process.env.PORT || 3000);
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin123';
@@ -11,6 +12,40 @@ const DATA_DIR = path.join(ROOT, 'data');
 const RESPONSES_FILE = path.join(DATA_DIR, 'responses.json');
 const SESSIONS_FILE = path.join(DATA_DIR, 'sessions.json');
 const DEBUG_RESPONSES_FILE = path.join(DATA_DIR, 'debug-responses.json');
+
+// Supabase 初始化
+const SUPABASE_URL = 'https://mgqglvowjbjcwobhbsvd.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_sSIj7DACJhbNwL7_wpa2Lg_lydHKVNH';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: false }
+});
+
+async function uploadToSupabase(response) {
+  try {
+    const { error } = await supabase
+      .from('responses')
+      .insert([{
+        id: response.id,
+        participant_code: response.participantCode,
+        server_code: response.serverCode,
+        submitted_at: response.submittedAt,
+        debug: response.debug,
+        group_number: response.groupNumber,
+        ip_hash: response.ipHash,
+        user_agent: response.userAgent,
+        condition: response.condition,
+        duration_ms: response.durationMs,
+        data: response.data
+      }]);
+    if (error) {
+      console.error('Supabase insert error:', error.message);
+    } else {
+      console.log('✓ Data uploaded to Supabase:', response.participantCode);
+    }
+  } catch (err) {
+    console.error('Supabase upload error:', err && err.message ? err.message : err);
+  }
+}
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -213,6 +248,8 @@ function handleSubmit(req, res, options = {}) {
     if (isDebug) writeDebugResponses(rows);
     else writeResponses(rows);
     send(res, 201, { ok: true, participantCode: response.participantCode });
+    // 将提交异步上传到 Supabase
+    uploadToSupabase(response);
   });
 }
 
@@ -313,6 +350,33 @@ function handleExport(req, res) {
   res.end(csv);
 }
 
+function handlePreview(req, res) {
+  if (!requireAdmin(req, res)) return;
+  const rows = readResponses();
+  const preview = rows.map(row => {
+    const data = row.data || {};
+    return {
+      participantCode: row.participantCode,
+      serverCode: row.serverCode,
+      submittedAt: row.submittedAt,
+      groupNumber: row.groupNumber,
+      condition: row.condition,
+      durationMs: row.durationMs,
+      // 未来特质量表 (7 题)
+      futureTrait: data.futureTrait || {},
+      // 前测控制量表 (9 题)
+      controlPre: data.controlPre || {},
+      // 后测控制量表 (9 题)
+      controlPost: data.controlPost || {},
+      // 产品选择
+      productChoices: data.productChoices || {},
+      // 捐款金额
+      donationAmount: data.donationAmount || null
+    };
+  });
+  send(res, 200, preview);
+}
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
@@ -322,6 +386,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && url.pathname === '/api/submit') return handleSubmit(req, res);
   if (req.method === 'POST' && url.pathname === '/api/debug/submit') return handleSubmit(req, res, { debug: true });
   if (req.method === 'GET' && url.pathname === '/api/admin') return handleAdmin(req, res);
+  if (req.method === 'GET' && url.pathname === '/api/preview') return handlePreview(req, res);
   if (req.method === 'GET' && url.pathname === '/api/export') return handleExport(req, res);
 
   if (req.method !== 'GET') {

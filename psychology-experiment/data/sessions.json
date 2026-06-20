@@ -31,5 +31,71 @@
     },
     "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
     "createdAt": "2026-06-20T08:01:41.250Z"
+  },
+  {
+    "id": "e56121b7-0c3b-4c9c-bdaf-20bae6ec6f10",
+    "participantCode": "004",
+    "groupNumber": 4,
+    "condition": {
+      "resource": "scarcity",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:10:54.723Z"
+  },
+  {
+    "id": "7677cb6b-27c4-4ebc-b412-403690b6e87b",
+    "participantCode": "005",
+    "groupNumber": 1,
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:41:12.743Z"
+  },
+  {
+    "id": "5c0048f8-9754-4ce3-b679-3b0663f8ff3e",
+    "participantCode": "006",
+    "groupNumber": 2,
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:42:31.923Z"
+  },
+  {
+    "id": "b4851678-6eda-43ae-95e9-eb17b533aaa5",
+    "participantCode": "007",
+    "groupNumber": 3,
+    "condition": {
+      "resource": "scarcity",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:43:36.599Z"
+  },
+  {
+    "id": "e7540933-03fe-4240-97bc-50438b59b1e6",
+    "participantCode": "008",
+    "groupNumber": 4,
+    "condition": {
+      "resource": "scarcity",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:43:37.893Z"
+  },
+  {
+    "id": "3ee3ccfa-f6da-4c85-ae9d-4ebfdfa53af2",
+    "participantCode": "009",
+    "groupNumber": 1,
+    "condition": {
+      "resource": "neutral",
+      "time": "neutral"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-20T10:56:23.457Z"
   }
 ]

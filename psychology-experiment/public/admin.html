@@ -5,25 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>实验后台</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+      .admin-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+      .admin-tabs button {
+        padding: 10px 20px;
+        background: none;
+        border: none;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+      }
+      .admin-tabs button.active {
+        color: #333;
+        border-bottom-color: #333;
+      }
+      .admin-section {
+        display: none;
+      }
+      .admin-section.active {
+        display: block;
+      }
+      .data-preview {
+        overflow-x: auto;
+        margin-top: 20px;
+        max-width: 100%;
+        border: 1px solid #ddd;
+        background: white;
+      }
+      .data-preview table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+        min-width: auto;
+      }
+      .data-preview th,
+      .data-preview td {
+        border: 1px solid #ddd;
+        padding: 4px 3px;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+      .data-preview th {
+        background: #f5f5f5;
+        font-weight: bold;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        font-size: 10px;
+      }
+      .data-preview td:first-child,
+      .data-preview th:first-child {
+        position: sticky;
+        left: 0;
+        background: #f9f9f9;
+        z-index: 9;
+        min-width: 60px;
+        font-weight: 500;
+      }
+      .data-preview th:first-child {
+        background: #f5f5f5;
+        z-index: 11;
+      }
+      .data-preview tbody tr:nth-child(even) {
+        background: #fafafa;
+      }
+      .data-preview tbody tr:hover {
+        background: #f0f0f0;
+      }
+      .data-preview .loading {
+        text-align: center;
+        padding: 20px;
+        color: #999;
+      }
+      .data-preview .error {
+        text-align: center;
+        padding: 20px;
+        color: #d32f2f;
+      }
+      .data-preview .empty {
+        text-align: center;
+        padding: 20px;
+        color: #999;
+      }
+    </style>
   </head>
   <body>
     <main class="admin-shell">
       <section class="admin-panel">
         <h1>实验后台</h1>
-        <p id="adminStatus">正在读取数据...</p>
-        <div class="admin-actions">
-          <button id="downloadBtn" type="button">导出 Excel 可打开数据</button>
-          <button id="refreshBtn" type="button" class="secondary">刷新</button>
+        
+        <div class="admin-tabs">
+          <button class="tab-btn active" data-tab="stats">统计信息</button>
+          <button class="tab-btn" data-tab="preview">数据预览</button>
         </div>
-        <p class="muted">默认后台令牌为 <code>admin123</code>。正式部署前请用环境变量 <code>ADMIN_TOKEN</code> 修改。</p>
+
+        <!-- 统计信息选项卡 -->
+        <div id="stats" class="admin-section active">
+          <p id="adminStatus">正在读取数据...</p>
+          <div class="admin-actions">
+            <button id="downloadBtn" type="button">导出 Excel 可打开数据</button>
+            <button id="refreshStatsBtn" type="button" class="secondary">刷新</button>
+          </div>
+          <p class="muted">默认后台令牌为 <code>admin123</code>。正式部署前请用环境变量 <code>ADMIN_TOKEN</code> 修改。</p>
+        </div>
+
+        <!-- 数据预览选项卡 -->
+        <div id="preview" class="admin-section">
+          <div class="admin-actions">
+            <button id="refreshPreviewBtn" type="button">刷新预览</button>
+          </div>
+          <div class="data-preview">
+            <div id="previewContent" class="loading">正在加载数据...</div>
+          </div>
+          <p class="muted">表格包含所有量表题目回答（FT=未来特质 1-7、CPre=前测控制 1-9、CPost=后测控制 1-9）</p>
+        </div>
       </section>
     </main>
+
     <script>
       const params = new URLSearchParams(location.search);
       const token = params.get('token') || '';
       const statusEl = document.getElementById('adminStatus');
       const downloadBtn = document.getElementById('downloadBtn');
-      const refreshBtn = document.getElementById('refreshBtn');
+      const refreshStatsBtn = document.getElementById('refreshStatsBtn');
+      const refreshPreviewBtn = document.getElementById('refreshPreviewBtn');
+      const previewContent = document.getElementById('previewContent');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+
+      // 选项卡切换
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabName = btn.dataset.tab;
+          
+          // 更新按钮状态
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // 显示对应的内容
+          document.querySelectorAll('.admin-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          document.getElementById(tabName).classList.add('active');
+          
+          // 如果切换到预览且还没加载过，自动加载
+          if (tabName === 'preview' && !previewContent.dataset.loaded) {
+            loadPreview();
+          }
+        });
+      });
 
       async function loadStatus() {
         const res = await fetch(`/api/admin?token=${encodeURIComponent(token)}`);
@@ -37,10 +173,93 @@
         downloadBtn.disabled = false;
       }
 
+      async function loadPreview() {
+        previewContent.innerHTML = '<div class="loading">正在加载数据...</div>';
+        previewContent.dataset.loaded = 'true';
+        
+        try {
+          const res = await fetch(`/api/preview?token=${encodeURIComponent(token)}`);
+          const data = await res.json();
+          
+          if (!res.ok) {
+            previewContent.innerHTML = `<div class="error">${data.error || '加载失败'}</div>`;
+            return;
+          }
+          
+          if (!Array.isArray(data) || data.length === 0) {
+            previewContent.innerHTML = '<div class="empty">暂无数据</div>';
+            return;
+          }
+          
+          // 生成表格
+          const html = `
+            <table>
+              <thead>
+                <tr>
+                  <th>参与者编号</th>
+                  <th>服务器编号</th>
+                  <th>提交时间</th>
+                  <th>组号</th>
+                  <th>条件</th>
+                  <th>耗时(ms)</th>
+                  <th colspan="7">未来特质量表</th>
+                  <th colspan="9">前测控制量表</th>
+                  <th colspan="9">后测控制量表</th>
+                  <th>产品选择</th>
+                  <th>捐款金额</th>
+                </tr>
+                <tr>
+                  <th colspan="6"></th>
+                  ${[1,2,3,4,5,6,7].map(i => `<th>FT_${i}</th>`).join('')}
+                  ${[1,2,3,4,5,6,7,8,9].map(i => `<th>CPre_${i}</th>`).join('')}
+                  ${[1,2,3,4,5,6,7,8,9].map(i => `<th>CPost_${i}</th>`).join('')}
+                  <th colspan="2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.map(row => {
+                  const choices = row.productChoices || {};
+                  const choiceText = [
+                    choices.food ? `食物: ${choices.food}` : '',
+                    choices.detergent ? `洗洁精: ${choices.detergent}` : ''
+                  ].filter(Boolean).join(' | ');
+                  
+                  return `
+                  <tr>
+                    <td>${escapeHtml(row.participantCode || '')}</td>
+                    <td>${escapeHtml(row.serverCode || '')}</td>
+                    <td>${new Date(row.submittedAt).toLocaleString('zh-CN')}</td>
+                    <td>${row.groupNumber || '-'}</td>
+                    <td>${escapeHtml(JSON.stringify(row.condition || {}))}</td>
+                    <td>${row.durationMs || '-'}</td>
+                    ${[1,2,3,4,5,6,7].map(i => `<td>${row.futureTrait[`futureTrait_${i}`] !== undefined ? row.futureTrait[`futureTrait_${i}`] : '-'}</td>`).join('')}
+                    ${[1,2,3,4,5,6,7,8,9].map(i => `<td>${row.controlPre[`controlPre_${i}`] !== undefined ? row.controlPre[`controlPre_${i}`] : '-'}</td>`).join('')}
+                    ${[1,2,3,4,5,6,7,8,9].map(i => `<td>${row.controlPost[`controlPost_${i}`] !== undefined ? row.controlPost[`controlPost_${i}`] : '-'}</td>`).join('')}
+                    <td>${escapeHtml(choiceText || '-')}</td>
+                    <td>${row.donationAmount !== null ? row.donationAmount : '-'}</td>
+                  </tr>
+                `;
+                }).join('')}
+              </tbody>
+            </table>
+          `;
+          previewContent.innerHTML = html;
+        } catch (err) {
+          previewContent.innerHTML = `<div class="error">加载出错：${err.message}</div>`;
+        }
+      }
+
+      function escapeHtml(text) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+      }
+
       downloadBtn.addEventListener('click', () => {
         location.href = `/api/export?token=${encodeURIComponent(token)}`;
       });
-      refreshBtn.addEventListener('click', loadStatus);
+      refreshStatsBtn.addEventListener('click', loadStatus);
+      refreshPreviewBtn.addEventListener('click', loadPreview);
+      
       loadStatus();
     </script>
   </body>

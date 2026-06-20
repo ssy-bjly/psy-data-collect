@@ -1,1 +1,85 @@
-[]
+[
+  {
+    "id": "37fcdc52-417c-4e61-8564-dee2fceb1372",
+    "participantCode": "004",
+    "serverCode": "001",
+    "submittedAt": "2026-06-20T10:12:36.575Z",
+    "debug": false,
+    "groupNumber": 4,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.125.1 Chrome/148.0.7778.97 Electron/42.2.0 Safari/537.36",
+    "condition": {
+      "resource": "scarcity",
+      "time": "future"
+    },
+    "durationMs": 99705,
+    "data": {
+      "demographics": {
+        "gender": "女",
+        "age": "19-24 岁",
+        "education": "本科",
+        "occupation": "在校学生",
+        "income": "2001-5000 元",
+        "region": "新一线城市 / 省会城市"
+      },
+      "futureTrait": {
+        "futureTrait_1": 4,
+        "futureTrait_2": 3,
+        "futureTrait_3": 5,
+        "futureTrait_4": 3,
+        "futureTrait_5": 5,
+        "futureTrait_6": 3,
+        "futureTrait_7": 4
+      },
+      "resourceManipulation": 3,
+      "controlPre": {
+        "controlPre_1": 6,
+        "controlPre_2": 2,
+        "controlPre_3": 5,
+        "controlPre_4": 5,
+        "controlPre_5": 3,
+        "controlPre_6": 5,
+        "controlPre_7": 2,
+        "controlPre_8": 4,
+        "controlPre_9": 4
+      },
+      "instructionRestatement": "好的自己弄的九棵树站",
+      "timeManipulation": 5,
+      "controlPost": {
+        "controlPost_1": 3,
+        "controlPost_2": 5,
+        "controlPost_3": 2,
+        "controlPost_4": 5,
+        "controlPost_5": 3,
+        "controlPost_6": 3,
+        "controlPost_7": 4,
+        "controlPost_8": 4,
+        "controlPost_9": 4
+      },
+      "productChoices": {
+        "food": "green_food",
+        "detergent": "regular_detergent"
+      },
+      "donationAmount": 2
+    }
+  },
+  {
+    "id": "3c3d5def-ea30-4dc5-895e-d29e77042c9a",
+    "participantCode": "006",
+    "serverCode": "002",
+    "submittedAt": "2026-06-20T10:42:42.349Z",
+    "debug": false,
+    "groupNumber": 2,
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "userAgent": "curl/8.7.1",
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "durationMs": 45000,
+    "data": {
+      "q1": "answer1",
+      "q2": "answer2"
+    }
+  }
+]
