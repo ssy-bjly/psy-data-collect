@@ -6,7 +6,7 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin123';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 
 function getAdminToken(event) {
   const token = event.headers['x-admin-token'];
@@ -15,7 +15,7 @@ function getAdminToken(event) {
 }
 
 function requireAdmin(event) {
-  return getAdminToken(event) === ADMIN_TOKEN;
+  return ADMIN_TOKEN && getAdminToken(event) === ADMIN_TOKEN;
 }
 
 exports.handler = async (event) => {

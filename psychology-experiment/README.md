@@ -12,11 +12,13 @@ npm start
 
 - 被试入口：http://localhost:3000
 - 调试入口：http://localhost:3000/?debug=1
-- 后台页面：http://localhost:3000/admin.html?token=admin123
+- 后台页面：http://localhost:3000/admin.html?token=你设置的ADMIN_TOKEN
 
 正式部署前建议设置后台令牌：
 
 ```powershell
+$env:SUPABASE_URL="https://your-project.supabase.co"
+$env:SUPABASE_KEY="your-supabase-key"
 $env:ADMIN_TOKEN="your-secret-token"
 npm start
 ```

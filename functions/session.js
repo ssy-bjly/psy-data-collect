@@ -7,8 +7,6 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin123';
-
 function getClientIp(event) {
   const forwarded = event.headers['x-forwarded-for'];
   const ip = forwarded ? forwarded.split(',')[0].trim() : event.headers['client-ip'] || '';
@@ -33,6 +31,15 @@ function groupForNumber(number) {
   return ((number - 1) % 4) + 1;
 }
 
+function generateParticipantCode() {
+  return crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase();
+}
+
+function groupSeedFromCode(code) {
+  const seed = Number.parseInt(code.slice(-4), 16);
+  return Number.isFinite(seed) ? seed : Date.now();
+}
+
 exports.handler = async (event) => {
   const isDebug = event.path.includes('/debug/');
 
@@ -55,28 +62,9 @@ exports.handler = async (event) => {
     const ip = getClientIp(event);
     const hash = ipHash(ip);
 
-    // 查询最大编号
-    const { data: responses, error: respError } = await supabase
-      .from('responses')
-      .select('participant_code, server_code');
-    
-    const { data: sessions, error: sessError } = await supabase
-      .from('sessions')
-      .select('participant_code');
-
-    if (respError || sessError) throw respError || sessError;
-
-    const maxCodeNumber = (rows = []) => {
-      return rows.reduce((max, row) => {
-        const value = Number.parseInt(row.participant_code || row.server_code || '0', 10);
-        return Number.isFinite(value) ? Math.max(max, value) : max;
-      }, 0);
-    };
-
-    const nextNumber = Math.max(maxCodeNumber(responses), maxCodeNumber(sessions)) + 1;
-    const groupNumber = groupForNumber(nextNumber);
+    const participantCode = generateParticipantCode();
+    const groupNumber = groupForNumber(groupSeedFromCode(participantCode));
     const sessionId = crypto.randomUUID();
-    const participantCode = String(nextNumber).padStart(3, '0');
 
     // 创建session
     const { error: insertError } = await supabase

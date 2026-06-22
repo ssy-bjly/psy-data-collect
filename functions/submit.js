@@ -17,14 +17,10 @@ function ipHash(ip) {
   return crypto.createHash('sha256').update(ip).digest('hex');
 }
 
-function conditionForGroup(groupNumber) {
-  const map = {
-    1: { resource: 'neutral', time: 'neutral' },
-    2: { resource: 'neutral', time: 'future' },
-    3: { resource: 'scarcity', time: 'neutral' },
-    4: { resource: 'scarcity', time: 'future' }
-  };
-  return map[groupNumber] || map[1];
+function generateServerCode() {
+  const stamp = new Date().toISOString().replace(/\D/g, '').slice(2, 14);
+  const suffix = crypto.randomBytes(2).toString('hex').toUpperCase();
+  return `${stamp}${suffix}`;
 }
 
 exports.handler = async (event) => {
@@ -41,14 +37,7 @@ exports.handler = async (event) => {
     const ip = getClientIp(event);
     const hash = ipHash(ip);
 
-    // 获取response计数以生成序号
-    const { count, error: countError } = await supabase
-      .from('responses')
-      .select('id', { count: 'exact', head: true });
-
-    if (countError) throw countError;
-
-    const serial = String((count || 0) + 1).padStart(3, '0');
+    const serial = generateServerCode();
     const table = isDebug ? 'debug_responses' : 'responses';
 
     // 查询session（如果有sessionId）
@@ -76,9 +65,9 @@ exports.handler = async (event) => {
       group_number: session?.group_number || payload.groupNumber || null,
       ip_hash: hash,
       user_agent: event.headers['user-agent'] || '',
-      condition: JSON.stringify(condition),
+      condition,
       duration_ms: Number(payload.durationMs || 0),
-      data: JSON.stringify(payload.data || {})
+      data: payload.data || {}
     };
 
     const { error: insertError } = await supabase

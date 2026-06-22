@@ -2,10 +2,6 @@ const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event) => {
   try {
-    // 调试：打印环境变量
-    console.log('DEBUG - SUPABASE_URL:', process.env.SUPABASE_URL ? '✓ set' : '✗ not set');
-    console.log('DEBUG - SUPABASE_KEY:', process.env.SUPABASE_KEY ? '✓ set' : '✗ not set');
-    
     if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
       return {
         statusCode: 500,

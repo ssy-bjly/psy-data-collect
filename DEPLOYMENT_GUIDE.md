@@ -1,6 +1,9 @@
-# Netlify Functions 部署指南 📋
+# Netlify Functions 部署指南
 
-你的项目已准备好部署到Netlify！这里是详细步骤。
+这份指南按“小白也能照着做”的方式写。你只需要抓住两件事：
+
+1. Supabase 里先把表建好
+2. Netlify 里把 3 个环境变量配好
 
 ## 第1步：确保Supabase表结构正确
 
@@ -57,7 +60,7 @@ CREATE TABLE debug_responses (
 );
 ```
 
-## 第2步：配置Netlify环境变量
+## 第2步：配置 Netlify 环境变量
 
 1. 去你的Netlify Site Settings
 2. 找到 **Build & Deploy → Environment** 
@@ -66,11 +69,18 @@ CREATE TABLE debug_responses (
 ```
 SUPABASE_URL = https://your-project.supabase.co
 SUPABASE_KEY = sb_publishable_xxxxxxxxxxxxx
-ADMIN_TOKEN = 你的自定义管理员密码 (比如: admin123)
+ADMIN_TOKEN = 你自己设置的后台密码
 ```
 
+重要：
+
+- `ADMIN_TOKEN` 现在没有默认值。
+- 如果你不设置它，后台页面 `/admin.html` 和导出接口 `/api/export` 都会拒绝访问。
+- 不要再用 `admin123` 这种太简单的密码。
+
 **在哪里找这些信息？**
-- SUPABASE_URL 和 SUPABASE_KEY：在Supabase → Project Settings → API
+- `SUPABASE_URL` 和 `SUPABASE_KEY`：在 Supabase → Project Settings → API
+- `ADMIN_TOKEN`：这是你自己定的，不是系统给的
 
 ## 第3步：连接Netlify并部署
 
@@ -82,7 +92,7 @@ npm install
 netlify deploy --prod
 ```
 
-### 方式B：连接GitHub（推荐）
+### 方式 B：连接 GitHub（推荐）
 
 1. 把你的代码push到GitHub
 2. 在Netlify Dashboard：
@@ -95,7 +105,7 @@ netlify deploy --prod
 3. 部署完成后，设置环境变量（见第2步）
 4. Netlify会自动重新部署
 
-## 第4步：更新你的前端代码
+## 第4步：前端代码一般不用改
 
 你的前端JavaScript已经在调用这些API了，所以应该不需要改。检查一下 `psychology-experiment/public/experiment.js`：
 
@@ -108,7 +118,7 @@ const data = await fetch('/api/submit', {
 });
 ```
 
-这些URL会自动路由到你的Functions！✨
+这些 URL 会自动路由到你的 Functions。
 
 ## 第5步：测试部署
 
@@ -124,23 +134,27 @@ const data = await fetch('/api/submit', {
 - 确认 `functions/` 文件夹存在
 - 在Netlify重新部署（Settings → Deploys → Trigger deploy）
 
+### ❌ 后台接口一直提示“后台访问令牌不正确”？
+- 检查 Netlify 里有没有设置 `ADMIN_TOKEN`
+- 检查你打开的地址是不是 `https://你的域名/admin.html?token=你设置的密码`
+
 ### ❌ "SUPABASE_URL is undefined"？
 - 检查环境变量是否正确设置
-- 确保variable名字完全匹配
+- 确保变量名字完全匹配
 
 ### ❌ 数据没有保存到Supabase？
 - 检查Supabase表是否存在
 - 查看Netlify Function logs：Site → Functions
 - 确保SUPABASE_KEY有足够权限
 
-### ✅ 成功了！
-- 管理员页面：访问 `https://your-site.netlify.app/admin.html?token=admin123`
-- 导出数据：访问 `https://your-site.netlify.app/api/export?token=admin123`
+### ✅ 成功了
+- 管理员页面：访问 `https://your-site.netlify.app/admin.html?token=你的ADMIN_TOKEN`
+- 导出数据：访问 `https://your-site.netlify.app/api/export?token=你的ADMIN_TOKEN`
 
 ## 备注
 
-- 旧的本地 `data/` 文件夹不再使用，所有数据都在Supabase
-- 如果需要修改 Function，在 `functions/` 文件夹编辑，然后push到GitHub
-- Netlify会自动在每次push时重新部署
+- 旧的本地 `data/` 文件夹不再用于线上部署，线上数据都在 Supabase
+- 如果需要修改 Function，在 `functions/` 文件夹编辑，然后 push 到 GitHub
+- Netlify 会在每次 push 后自动重新部署
 
 需要帮助？问我就行！ 🚀

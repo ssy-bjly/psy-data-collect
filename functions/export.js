@@ -6,7 +6,7 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin123';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 
 function getAdminToken(event) {
   const token = event.headers['x-admin-token'];
@@ -15,7 +15,19 @@ function getAdminToken(event) {
 }
 
 function requireAdmin(event) {
-  return getAdminToken(event) === ADMIN_TOKEN;
+  return ADMIN_TOKEN && getAdminToken(event) === ADMIN_TOKEN;
+}
+
+function parseMaybeJson(value, fallback) {
+  if (value === null || value === undefined) return fallback;
+  if (typeof value === 'string') {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return fallback;
+    }
+  }
+  return value;
 }
 
 function flattenObject(input, prefix = '', out = {}) {
@@ -46,7 +58,11 @@ function escapeCsv(value) {
 
 function buildCsv(rows) {
   const flatRows = rows.map(row => {
-    const exportRow = { ...row };
+    const exportRow = {
+      ...row,
+      condition: parseMaybeJson(row.condition, {}),
+      data: parseMaybeJson(row.data, {})
+    };
     delete exportRow.ip_hash;
     delete exportRow.timings;
     delete exportRow.duration_seconds;

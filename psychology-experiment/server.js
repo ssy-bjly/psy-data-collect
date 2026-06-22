@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const { createClient } = require('@supabase/supabase-js');
 
 const PORT = Number(process.env.PORT || 3000);
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin123';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const DATA_DIR = path.join(ROOT, 'data');
@@ -14,13 +14,14 @@ const SESSIONS_FILE = path.join(DATA_DIR, 'sessions.json');
 const DEBUG_RESPONSES_FILE = path.join(DATA_DIR, 'debug-responses.json');
 
 // Supabase 初始化
-const SUPABASE_URL = 'https://mgqglvowjbjcwobhbsvd.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_sSIj7DACJhbNwL7_wpa2Lg_lydHKVNH';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+const SUPABASE_URL = process.env.SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.SUPABASE_KEY || '';
+const supabase = SUPABASE_URL && SUPABASE_KEY ? createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: { persistSession: false }
-});
+}) : null;
 
 async function uploadToSupabase(response) {
+  if (!supabase) return;
   try {
     const { error } = await supabase
       .from('responses')
@@ -323,7 +324,7 @@ function handleStatus(req, res) {
 }
 
 function requireAdmin(req, res) {
-  if (getAdminToken(req) !== ADMIN_TOKEN) {
+  if (!ADMIN_TOKEN || getAdminToken(req) !== ADMIN_TOKEN) {
     send(res, 401, { error: '后台访问令牌不正确。' });
     return false;
   }

@@ -1,8 +1,8 @@
-# 心理学实验数据收集平台 🧠
+# 心理学实验数据收集平台
 
 ## 项目现状
 
-✅ **已配置为Netlify部署**
+已配置为 Netlify 部署：
 - 前端：静态HTML/CSS/JS在 `psychology-experiment/public/`
 - 后端：使用Netlify Functions（无服务器）
 - 数据库：Supabase PostgreSQL
@@ -32,16 +32,35 @@ psy-data-collect/
 
 ```
 
+## 先看这 3 件最重要的事
+
+1. `ADMIN_TOKEN` 必须自己设置。
+如果不设置，后台页面和导出接口现在会直接拒绝访问。这是故意的，避免你忘记改默认密码。
+
+2. `SUPABASE_URL` 和 `SUPABASE_KEY` 必须在 Netlify 里配置。
+没有这两个，线上无法保存数据。
+
+3. `responses.condition` 和 `responses.data` 现在按 JSON 正常存储。
+这比以前把整块数据存成字符串更适合后续导出和统计分析。
+
+4. 参与者编号和提交编号不再依赖“当前已有多少条数据”。
+这能减少多人同时进入实验时出现重复编号的风险。
+
 ## 快速开始
 
-### 1️⃣ 本地测试（可选）
+### 1. 本地测试（可选）
 ```bash
 npm install
+export SUPABASE_URL="https://你的项目.supabase.co"
+export SUPABASE_KEY="你的 Supabase key"
+export ADMIN_TOKEN="你自己设置的后台密码"
 npm run dev:local
 # 访问 http://localhost:3000
 ```
 
-### 2️⃣ 部署到Netlify
+如果你只是想先看页面，不连数据库也可以运行，但提交到 Supabase 和后台管理会不可用。
+
+### 2. 部署到 Netlify
 详见 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
 简单总结：
@@ -69,9 +88,16 @@ npm run dev:local
 
 ```
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=sb_publishable_xxxxx
-ADMIN_TOKEN=你的密码
+SUPABASE_KEY=你的 Supabase key
+ADMIN_TOKEN=你自己设置的后台密码
 ```
+
+## 现在改了什么
+
+- 后台接口不再默认使用 `admin123`。
+- 本地 `server.js` 不再硬编码 Supabase 地址和 key。
+- Netlify 提交接口会把实验数据直接存成 JSON，而不是字符串。
+- 导出和预览兼容旧数据和新数据。
 
 ## 故障排除
 
@@ -83,6 +109,10 @@ ADMIN_TOKEN=你的密码
 - ✅ 检查环境变量是否正确
 - ✅ 看Netlify Functions日志（Site → Functions）
 - ✅ 确认Supabase表存在
+
+**后台打不开？**
+- 先检查你有没有设置 `ADMIN_TOKEN`
+- 访问后台时要带上 `?token=你的密码`
 
 **数据没有保存？**
 - ✅ 确认Supabase表结构正确
