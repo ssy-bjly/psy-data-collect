@@ -1,0 +1,9 @@
+node_modules/
+.git/
+.env
+.env.local
+*.bak
+.DS_Store
+*.log
+psychology-experiment/data/
+psychology-experiment/server.js
