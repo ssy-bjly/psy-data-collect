@@ -54,7 +54,7 @@ npm install
 export SUPABASE_URL="https://你的项目.supabase.co"
 export SUPABASE_KEY="你的 Supabase key"
 export ADMIN_TOKEN="你自己设置的后台密码"
-npm run dev:local
+npm --prefix psychology-experiment start
 # 访问 http://localhost:3000
 ```
 

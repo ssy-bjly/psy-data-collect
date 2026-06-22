@@ -397,7 +397,19 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res);
 });
 
-server.listen(PORT, () => {
-  console.log(`Experiment app running at http://localhost:${PORT}`);
-  console.log(`Admin export: http://localhost:${PORT}/admin.html?token=${ADMIN_TOKEN}`);
-});
+module.exports = {
+  server,
+  handleStatus,
+  handleSession,
+  handleSubmit,
+  handleAdmin,
+  handlePreview,
+  handleExport
+};
+
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Experiment app running at http://localhost:${PORT}`);
+    console.log(`Admin export: http://localhost:${PORT}/admin.html?token=${ADMIN_TOKEN}`);
+  });
+}

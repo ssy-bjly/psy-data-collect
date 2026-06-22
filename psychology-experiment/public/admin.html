@@ -94,12 +94,59 @@
         padding: 20px;
         color: #999;
       }
+      .token-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        gap: 20px;
+      }
+      .token-login h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+      }
+      .token-login-form {
+        display: flex;
+        gap: 10px;
+      }
+      .token-login-form input {
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-width: 200px;
+      }
+      .token-login-form button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .token-login-form button:hover {
+        background: #0056b3;
+      }
     </style>
   </head>
   <body>
     <main class="admin-shell">
       <section class="admin-panel">
         <h1>实验后台</h1>
+        
+        <div id="loginPrompt" class="token-login" style="display: none;">
+          <h2>请输入后台访问令牌</h2>
+          <div class="token-login-form">
+            <input type="password" id="tokenInput" placeholder="输入令牌">
+            <button type="button" id="tokenSubmitBtn">提交</button>
+          </div>
+          <p style="color: #999; font-size: 12px;">令牌已存储在浏览器本地存储</p>
+        </div>
+        
+        <div id="mainContent" style="display: none;">
         
         <div class="admin-tabs">
           <button class="tab-btn active" data-tab="stats">统计信息</button>
@@ -126,18 +173,72 @@
           </div>
           <p class="muted">表格包含所有量表题目回答（FT=未来特质 1-7、CPre=前测控制 1-9、CPost=后测控制 1-9）</p>
         </div>
+        </div>
       </section>
     </main>
 
     <script>
       const params = new URLSearchParams(location.search);
-      const token = params.get('token') || '';
+      let token = params.get('token') || localStorage.getItem('adminToken') || '';
       const statusEl = document.getElementById('adminStatus');
       const downloadBtn = document.getElementById('downloadBtn');
       const refreshStatsBtn = document.getElementById('refreshStatsBtn');
       const refreshPreviewBtn = document.getElementById('refreshPreviewBtn');
       const previewContent = document.getElementById('previewContent');
       const tabBtns = document.querySelectorAll('.tab-btn');
+      const loginPrompt = document.getElementById('loginPrompt');
+      const mainContent = document.getElementById('mainContent');
+      const tokenInput = document.getElementById('tokenInput');
+      const tokenSubmitBtn = document.getElementById('tokenSubmitBtn');
+
+      // 令牌输入处理
+      function showLoginPrompt() {
+        loginPrompt.style.display = 'flex';
+        mainContent.style.display = 'none';
+        tokenInput.focus();
+      }
+
+      function hideLoginPrompt() {
+        loginPrompt.style.display = 'none';
+        mainContent.style.display = 'block';
+      }
+
+      function setToken(newToken) {
+        token = newToken;
+        localStorage.setItem('adminToken', token);
+        hideLoginPrompt();
+        loadStatus();
+        loadPreview();
+      }
+
+      tokenSubmitBtn.addEventListener('click', () => {
+        const inputToken = tokenInput.value.trim();
+        if (inputToken) {
+          setToken(inputToken);
+        }
+      });
+
+      tokenInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          tokenSubmitBtn.click();
+        }
+      });
+
+      // 页面加载时检查令牌
+      async function checkToken() {
+        if (!token) {
+          showLoginPrompt();
+          return;
+        }
+        const res = await fetch(`/api/admin?token=${encodeURIComponent(token)}`);
+        if (!res.ok) {
+          token = '';
+          localStorage.removeItem('adminToken');
+          showLoginPrompt();
+          return;
+        }
+        hideLoginPrompt();
+      }
 
       // 选项卡切换
       tabBtns.forEach(btn => {
@@ -260,7 +361,7 @@
       refreshStatsBtn.addEventListener('click', loadStatus);
       refreshPreviewBtn.addEventListener('click', loadPreview);
       
-      loadStatus();
+      checkToken();
     </script>
   </body>
 </html>

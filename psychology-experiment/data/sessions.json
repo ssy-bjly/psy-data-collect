@@ -97,5 +97,16 @@
     },
     "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
     "createdAt": "2026-06-20T10:56:23.457Z"
+  },
+  {
+    "id": "832cddbf-fd7b-4159-9d1f-43ba5ff2386c",
+    "participantCode": "010",
+    "groupNumber": 2,
+    "condition": {
+      "resource": "neutral",
+      "time": "future"
+    },
+    "ipHash": "eff8e7ca506627fe15dda5e0e512fcaad70b6d520f37cc76597fdb4f2d83a1a3",
+    "createdAt": "2026-06-22T06:46:13.085Z"
   }
 ]
