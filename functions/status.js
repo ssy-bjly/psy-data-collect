@@ -1,13 +1,30 @@
 const { createClient } = require('@supabase/supabase-js');
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY,
-  { auth: { persistSession: false } }
-);
-
 exports.handler = async (event) => {
   try {
+    // 调试：打印环境变量
+    console.log('DEBUG - SUPABASE_URL:', process.env.SUPABASE_URL ? '✓ set' : '✗ not set');
+    console.log('DEBUG - SUPABASE_KEY:', process.env.SUPABASE_KEY ? '✓ set' : '✗ not set');
+    
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ 
+          error: '环境变量未设置',
+          debug: {
+            SUPABASE_URL: process.env.SUPABASE_URL ? 'SET' : 'NOT_SET',
+            SUPABASE_KEY: process.env.SUPABASE_KEY ? 'SET' : 'NOT_SET'
+          }
+        })
+      };
+    }
+
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_KEY,
+      { auth: { persistSession: false } }
+    );
+
     const { count, error } = await supabase
       .from('responses')
       .select('id', { count: 'exact', head: true });
@@ -25,7 +42,7 @@ exports.handler = async (event) => {
     console.error('Error:', error.message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: '获取状态失败' })
+      body: JSON.stringify({ error: error.message })
     };
   }
 };
