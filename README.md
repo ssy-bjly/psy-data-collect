@@ -2,11 +2,17 @@
 
 ## 项目现状
 
-已配置为 Netlify 部署：
+已发布到 Netlify：
 - 前端：静态HTML/CSS/JS在 `psychology-experiment/public/`
 - 后端：使用Netlify Functions（无服务器）
 - 数据库：Supabase PostgreSQL
 - 环境：完全云端部署
+
+线上地址：
+
+- 实验页面：https://ssy-psy-data-collect.netlify.app
+- 后台页面：`https://ssy-psy-data-collect.netlify.app/admin.html?token=你的ADMIN_TOKEN`
+- Netlify 项目：https://app.netlify.com/projects/ssy-psy-data-collect
 
 ## 项目结构
 
@@ -46,6 +52,30 @@ psy-data-collect/
 4. 参与者编号和提交编号不再依赖“当前已有多少条数据”。
 这能减少多人同时进入实验时出现重复编号的风险。
 
+## 当前线上部署
+
+当前 Netlify 站点：
+
+```
+https://ssy-psy-data-collect.netlify.app
+```
+
+后台入口：
+
+```
+https://ssy-psy-data-collect.netlify.app/admin.html?token=你的ADMIN_TOKEN
+```
+
+线上环境变量已在 Netlify 配置：
+
+```
+SUPABASE_URL
+SUPABASE_KEY
+ADMIN_TOKEN
+```
+
+本地 `.env` 只用于本地开发，已经被 `.gitignore` 忽略，不要提交真实密钥。
+
 ## 快速开始
 
 ### 1. 本地测试（可选）
@@ -64,10 +94,16 @@ npm --prefix psychology-experiment start
 详见 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
 简单总结：
-1. ✅ 在Supabase创建表（复制SQL）
-2. ✅ 设置Netlify环境变量
-3. ✅ 连接GitHub仓库到Netlify
-4. ✅ 完成！
+1. 在Supabase创建表（复制SQL）
+2. 设置Netlify环境变量
+3. 连接GitHub仓库到Netlify，或使用 Netlify CLI 发布
+4. 发布完成后测试实验页、后台页和导出接口
+
+当前项目已经链接到 Netlify 站点 `ssy-psy-data-collect`。手动生产部署命令：
+
+```bash
+npx netlify deploy --prod
+```
 
 ## API端点
 
@@ -129,9 +165,9 @@ ADMIN_TOKEN=你自己设置的后台密码
 
 ## 下一步
 
-1. 按照 [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) 部署
-2. 测试所有功能
-3. 邀请参与者进行实验
-4. 从管理员面板导出数据
+1. 测试完整实验流程
+2. 邀请参与者进行实验
+3. 从管理员面板预览和导出数据
+4. 修改代码后重新运行 `npx netlify deploy --prod`
 
-需要帮助？问我！ 🚀
+需要帮助？问我！
